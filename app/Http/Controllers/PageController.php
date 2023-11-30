@@ -23,15 +23,4 @@ class PageController extends Controller
         // То есть шаблон находится по пути resources/views/page/about.blade.php
         return view('page.about', ['team' => $team]);
     }
-
-    public function team()
-    {
-        return view('page.team');
-    }
-
-    public function articles()
-    {
-        $articles = \App\Models\Article::all();
-        return view('page.articles', ['articles' => $articles]);
-    }
 }
