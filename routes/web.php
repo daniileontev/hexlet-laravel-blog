@@ -15,10 +15,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PageController::class, 'home'])->name('home');
-Route::get('about', [PageController::class, 'about'])->name('about');
-Route::get('articles', [ArticleController::class, 'index'])->name('articles.index');
+Route::get('/', [PageController::class, 'home'])
+    ->name('home');
 
+Route::get('about', [PageController::class, 'about'])
+    ->name('about');
+
+Route::get('articles', [ArticleController::class, 'index'])
+    ->name('articles.index');
+
+
+
+Route::get('articles/create', 'ArticleController@create')
+    ->name('articles.create');
+Route::post('articles', 'ArticleController@store')
+    ->name('articles.store');
+
+# id – параметр, который зависит от конкретной статьи
+# Фигурные скобки нужны для описания параметров маршрута
+Route::get('articles/{id}', [ArticleController::class, 'show'])
+    ->name('articles.show');
+
+Route::get('articles/{id}/edit', [ArticleController::class, 'edit'])
+    ->name('articles.edit');
+
+Route::patch('articles/{id}', [ArticleController::class, 'update'])
+    ->name('articles.update');
+
+Route::delete('articles/{id}', [ArticleController::class, 'destroy'])
+    ->name('articles.destroy');
+
+Route::resource('articles', ArticleController::class);
 //Route::get('/', function () {
 //    return view('welcome');
 //});
